@@ -18,7 +18,7 @@ function App() {
   const classes=useStyles();
 
   return (
-    <BrowserRouter forceRefresh={true}>
+    <BrowserRouter forceRefresh={true} >
        <div className={classes.App}>
          <Header/>
          <Route path="/" component={HomePage} exact />
