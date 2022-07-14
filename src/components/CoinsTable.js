@@ -17,7 +17,7 @@ import {
   Paper,
 } from "@material-ui/core";
 import axios from "axios";
-import { CoinList } from "./config/api";
+
 import { useHistory } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 
@@ -33,12 +33,10 @@ const useStyles=makeStyles(()=>({
   },
 }));
 export default function CoinsTable() {
-  const [coins, setCoins] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
-  const { currency, symbol } = CryptoState();
+  const { coins,loading, currency, symbol,fetchCoins} = CryptoState();
   const history = useHistory();
 
   const darkTheme = createTheme({
@@ -50,14 +48,14 @@ export default function CoinsTable() {
     },
   });
   const classes=useStyles();
-  const fetchCoins = async () => {
-    setLoading(true);
-    const { data } = await axios.get(CoinList(currency));
-    console.log(data);
+  // const fetchCoins = async () => {
+  //   setLoading(true);
+  //   const { data } = await axios.get(CoinList(currency));
+  //   console.log(data);
 
-    setCoins(data);
-    setLoading(false);
-  };
+  //   setCoins(data);
+  //   setLoading(false);
+  // };
 
   useEffect(() => {
     fetchCoins();
